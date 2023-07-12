@@ -2,9 +2,11 @@
 
 ## Elections:
 
+#### Dataset Description
+
 The election dataset is a comprehensive collection of voting statistics for the French Presidential Elections of 2017 and 2022. Each row corresponds to a voting district, represented by a unique combination of the department and the electoral district number.
 
-## Column Descriptions
+### Column Descriptions
 
 1. **CodeCirco**: Unique code of the electoral district.
 2. **Département**: Name of the French department.
