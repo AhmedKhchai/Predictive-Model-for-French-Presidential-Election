@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import os
 
-st.write("Current working directory:", os.getcwd())
-st.write("Directory contents:", os.listdir())
 dataset_path = "datasets/election_2017.csv"
 # Load your data (adjust the path to your data file)
 df = pd.read_csv(dataset_path, sep=",", quotechar='"')
