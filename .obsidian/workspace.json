@@ -4,18 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "1ce706821c009a9a",
+        "id": "cd974008d5a58f6f",
         "type": "tabs",
         "children": [
           {
-            "id": "c272b607bb9e8292",
+            "id": "3fffd6fedc6bd549",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
-              "state": {
-                "file": "docs/Datasets.md",
-                "staged": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -150,24 +147,46 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c272b607bb9e8292",
+  "active": "4a4c590f587eb5c6",
   "lastOpenFiles": [
+    "datasets/security-historic-dataset.xlsx",
+    "datasets/Downloads/django.epub",
+    "datasets/Downloads/Django Filters.docx",
+    "datasets/Downloads/DistributionSubcategory-2023-06-15.xlsx",
+    "datasets/Downloads/DistributionCategory-2023-06-15.xlsx",
+    "datasets/Downloads/disease.csv",
+    "datasets/Downloads/DiscordSetup.exe",
+    "datasets/Downloads/DigitalOcean Invoice 2023 Mar (9594986-455333086).pdf",
+    "datasets/Downloads/diet.png",
+    "datasets/Downloads/Devis zazz.pdf",
+    "datasets/Downloads/Devis Sturbo.pdf",
+    "datasets/Downloads/Devis salmon.pdf",
+    "datasets/Downloads/cropped-13.png",
+    "datasets/Downloads/coffee-machine.png",
+    "datasets/Downloads/code quality.md",
+    "datasets/Downloads/clear-filter.png",
+    "datasets/Downloads/class_diagram.png",
+    "datasets/Downloads/class_diagram.md",
+    "datasets/Downloads/choice.png",
+    "datasets/Downloads/cas d'usage exam.png",
+    "datasets/Downloads/can't host h2 infra.svg",
+    "datasets/Downloads/can't host h2 infra(1).svg",
+    "datasets/Downloads/Beep Beep - Traffic Jam.png",
+    "datasets/Downloads/20221206_Tedhy_Devs_Sprint_9_planing.md",
+    "datasets/Downloads/20210111_Definition of Done.md",
+    "README.md",
     "docs/Datasets.md",
     "docs/Main Notes.md",
     "docs/Prompts.md",
     "docs/Strategy.md",
-    "README.md",
     "docs/Stategy.md",
-    "docs",
     "mspr-data-notes/Strategy.md",
     "mspr-data-notes/Prompts.md",
     "mspr-data-notes/Main Notes.md",
     "mspr-data-notes/Datasets.md",
-    "mspr-data-notes",
     "MSPR DATA/Strategy.md",
     "MSPR DATA/Prompts.md",
     "MSPR DATA/Main Notes.md",
-    "MSPR DATA/Datasets.md",
-    "MSPR DATA"
+    "MSPR DATA/Datasets.md"
   ]
 }
