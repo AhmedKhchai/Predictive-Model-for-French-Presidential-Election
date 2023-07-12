@@ -73,12 +73,11 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 293.5
   },
   "right": {
     "id": "4e9c69072df79b9e",
@@ -138,11 +137,12 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 224.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -154,20 +154,24 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4a4c590f587eb5c6",
+  "active": "3fffd6fedc6bd549",
   "lastOpenFiles": [
+    "streamlit_app.py",
+    "src/eda.py",
+    "eda.py",
+    "src",
+    "poetry.lock",
+    "pyproject.toml",
+    "docs/EDA.md",
+    "docs/Prompts.md",
+    "docs/Main Notes.md",
+    "datasets/election_2022.csv",
+    "datasets/election_2017.csv",
     "docs/Datasets.md",
     "README.md",
     "datasets/elections-results-t1-2022.csv",
     "datasets/p2022-resultats-circonscriptions-t1(1).csv",
     "datasets/security-historic-dataset.xlsx",
-    "datasets/Downloads/django.epub",
-    "datasets/Downloads/Django Filters.docx",
-    "datasets/Downloads/DistributionSubcategory-2023-06-15.xlsx",
-    "datasets/Downloads/DistributionCategory-2023-06-15.xlsx",
-    "datasets/Downloads/disease.csv",
-    "datasets/Downloads/DiscordSetup.exe",
-    "datasets/Downloads/DigitalOcean Invoice 2023 Mar (9594986-455333086).pdf",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
@@ -182,8 +186,6 @@
     "datasets/Downloads/Beep Beep - Traffic Jam.png",
     "datasets/Downloads/20221206_Tedhy_Devs_Sprint_9_planing.md",
     "datasets/Downloads/20210111_Definition of Done.md",
-    "docs/Main Notes.md",
-    "docs/Prompts.md",
     "docs/Strategy.md",
     "docs/Stategy.md",
     "mspr-data-notes/Strategy.md",
