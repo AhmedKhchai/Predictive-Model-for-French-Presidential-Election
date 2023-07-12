@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "docs/EDA.md"
               }
             }
           }
@@ -156,22 +156,21 @@
   },
   "active": "3fffd6fedc6bd549",
   "lastOpenFiles": [
+    "docs/Prompts.md",
+    "README.md",
+    "docs/EDA.md",
     "streamlit_app.py",
     "src/eda.py",
     "eda.py",
     "src",
     "poetry.lock",
     "pyproject.toml",
-    "docs/EDA.md",
-    "docs/Prompts.md",
     "docs/Main Notes.md",
     "datasets/election_2022.csv",
     "datasets/election_2017.csv",
     "docs/Datasets.md",
-    "README.md",
     "datasets/elections-results-t1-2022.csv",
     "datasets/p2022-resultats-circonscriptions-t1(1).csv",
-    "datasets/security-historic-dataset.xlsx",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
