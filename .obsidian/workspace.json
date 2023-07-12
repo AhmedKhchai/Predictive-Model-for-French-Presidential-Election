@@ -11,8 +11,12 @@
             "id": "3fffd6fedc6bd549",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "docs/Datasets.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "docs/Datasets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,6 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "docs/Datasets.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +133,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "docs/Datasets.md"
+              }
             }
           }
         ],
@@ -149,6 +157,8 @@
   },
   "active": "4a4c590f587eb5c6",
   "lastOpenFiles": [
+    "datasets/elections-results-t1-2022.csv",
+    "datasets/p2022-resultats-circonscriptions-t1(1).csv",
     "datasets/security-historic-dataset.xlsx",
     "datasets/Downloads/django.epub",
     "datasets/Downloads/Django Filters.docx",
@@ -159,8 +169,6 @@
     "datasets/Downloads/DigitalOcean Invoice 2023 Mar (9594986-455333086).pdf",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/Devis zazz.pdf",
-    "datasets/Downloads/Devis Sturbo.pdf",
-    "datasets/Downloads/Devis salmon.pdf",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
     "datasets/Downloads/code quality.md",
