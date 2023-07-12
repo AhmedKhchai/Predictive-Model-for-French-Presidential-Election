@@ -11,11 +11,10 @@
             "id": "c272b607bb9e8292",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "docs/Strategy.md",
-                "mode": "source",
-                "source": false
+                "file": "docs/Datasets.md",
+                "staged": false
               }
             }
           }
@@ -94,7 +93,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/Strategy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +109,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/Strategy.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +130,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "docs/Strategy.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -157,11 +152,12 @@
   },
   "active": "c272b607bb9e8292",
   "lastOpenFiles": [
-    "docs/Main Notes.md",
-    "docs/Strategy.md",
     "docs/Datasets.md",
-    "README.md",
+    "docs/Main Notes.md",
     "docs/Prompts.md",
+    "docs/Strategy.md",
+    "README.md",
+    "docs/Stategy.md",
     "docs",
     "mspr-data-notes/Strategy.md",
     "mspr-data-notes/Prompts.md",
