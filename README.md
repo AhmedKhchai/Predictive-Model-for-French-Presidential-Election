@@ -6,13 +6,13 @@ This project aims to create a predictive model for the French presidential elect
 
 The datasets for the model will be sourced per each French department to capture more localized influences on the election outcomes. Data from the five years preceding the election years will be used to understand trends and patterns that could impact the elections.
 
-## [Data Sources](docs/Datasets)
+## [Data Sources](docs/Datasets.md)
 
 1. **Election Data**: Historical data from the 2017 French Presidential Election.
 2. **Employment Data**: The annual "Besoins en Main-d'Œuvre" (BMO) survey data for the years 2015-2022. This dataset contains information about recruitment needs based on industry sector and employment basin for approximately 1.9 million French establishments.
 3. **Security Data**: Data from the Service statistique ministériel de la sécurité intérieure (SSMSI) for the years 2015-2022. This dataset includes several statistical indicators related to crimes, offenses, violation rates, and public sentiment towards security.
 
-## [Methodology](docs/Strategy)
+## [Methodology](docs/Strategy.md)
 
 1. **Data Collection & Preprocessing**: Collect the data from the sources mentioned above and perform necessary cleaning and preprocessing steps. This would include dealing with missing values, handling outliers, feature encoding, etc.
 
