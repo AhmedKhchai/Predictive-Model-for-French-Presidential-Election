@@ -13,6 +13,8 @@
     
 6. **Deep-Dive Analyses:** Depending on the results from the initial exploratory analyses, we might want to dig deeper into specific areas.
 
+## Elections datasets
+
 ### Load the Dataset
 
 ```python 
@@ -128,3 +130,6 @@ The quartiles provide further details:
 - 25% of circonscriptions had fewer than 17,746 abstentions.
 - 50% (the median) had fewer than 20,246 abstentions, indicating that half the circonscriptions had more than 20,246 abstentions and half had fewer.
 - 75% of circonscriptions had fewer than 22,800 abstentions.
+
+### Visualization 
+*Visit*: https://mspr-data.streamlit.app/
