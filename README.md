@@ -1,4 +1,4 @@
-	# Predictive Model for French Presidential Election
+# Predictive Model for French Presidential Election
 
 ## Project Overview
 
