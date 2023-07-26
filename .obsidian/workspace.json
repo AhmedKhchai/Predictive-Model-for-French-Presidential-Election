@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/EDA.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/EDA.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/EDA.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/EDA.md"
+                "file": "README.md"
               }
             }
           }
@@ -146,6 +146,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -154,23 +155,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3fffd6fedc6bd549",
+  "active": "c1210fd555bbe781",
   "lastOpenFiles": [
-    "docs/Prompts.md",
-    "README.md",
     "docs/EDA.md",
+    "Excalidraw/Drawing 2023-07-15 20.11.44.excalidraw.md",
+    "Excalidraw",
+    "docs/Strategy.md",
+    "docs/Main Notes.md",
+    "README.md",
+    "docs/Datasets.md",
+    "docs/Prompts.md",
+    "docs/Tasks.md",
+    "streamlit/eda/security-eda.py",
+    "streamlit/eda/employment-eda.py",
+    "streamlit/eda/election-eda.py",
+    "streamlit/eda",
+    "streamlit/app.py",
+    "streamlit",
+    "Untitled.canvas",
+    "2023-07-13.md",
     "streamlit_app.py",
     "src/eda.py",
     "eda.py",
-    "src",
-    "poetry.lock",
-    "pyproject.toml",
-    "docs/Main Notes.md",
-    "datasets/election_2022.csv",
-    "datasets/election_2017.csv",
-    "docs/Datasets.md",
-    "datasets/elections-results-t1-2022.csv",
-    "datasets/p2022-resultats-circonscriptions-t1(1).csv",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
@@ -185,7 +191,6 @@
     "datasets/Downloads/Beep Beep - Traffic Jam.png",
     "datasets/Downloads/20221206_Tedhy_Devs_Sprint_9_planing.md",
     "datasets/Downloads/20210111_Definition of Done.md",
-    "docs/Strategy.md",
     "docs/Stategy.md",
     "mspr-data-notes/Strategy.md",
     "mspr-data-notes/Prompts.md",

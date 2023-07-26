@@ -2,12 +2,19 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import base64
 
+# Load your data
 dataset_path = "datasets/election_2017.csv"
-# Load your data (adjust the path to your data file)
 df = pd.read_csv(dataset_path, sep=",", quotechar='"')
 
+# Page Title
 st.title("French Election Data Analysis")
+
+# Provide a data summary
+st.subheader("Data Summary")
+st.write(f"Number of Rows: {df.shape[0]}")
+st.write(f"Number of Columns: {df.shape[1]}")
 
 # Print column names for debugging
 st.write(df.columns)
@@ -54,3 +61,36 @@ plt.xlabel("Abstentions")
 plt.ylabel("Votes")
 plt.title(f"Abstentions vs Votes for {candidate}")
 st.pyplot(fig)
+
+# Add an option to select a specific department
+departments = df["Département"].unique().tolist()
+selected_dept = st.multiselect("Select a department", departments)
+
+# Filter data based on selected department
+if selected_dept:
+    df_filtered = df[df["Département"].isin(selected_dept)]
+    st.write(df_filtered)
+
+# Correlation matrix
+st.subheader("Correlation Matrix")
+fig, ax = plt.subplots()
+sns.heatmap(df[candidates].corr(), annot=True, ax=ax, cmap="coolwarm")
+st.pyplot(fig)
+
+
+def download_link(object_to_download, download_filename, download_link_text):
+    if isinstance(object_to_download, pd.DataFrame):
+        object_to_download = object_to_download.to_csv(index=False)
+
+    # some strings <-> bytes conversions necessary here
+    b64 = base64.b64encode(object_to_download.encode()).decode()
+
+    return f'<a href="data:file/txt;base64,{b64}" download="{download_filename}">{download_link_text}</a>'
+
+
+# Provide download link for the data
+if st.button("Download Dataframe as CSV"):
+    tmp_download_link = download_link(
+        df, "YOUR_DF.csv", "Click here to download your data!"
+    )
+    st.markdown(tmp_download_link, unsafe_allow_html=True)
