@@ -145,7 +145,8 @@ import pandas as pd
 df = pd.read_csv('security-historic-dataset.csv', sep='\t')  # Assuming the data is tab-separated. Change the separator if it's different.
 
 # Let's take a look at the first few rows of the dataset
-print(df.head())
+print(df.head())  
+# Displays the first 5 records of the dataset, including crime details, source of data, geographical area, etc.
 ```
 
 After loading the data, we can start EDA by performing some basic operations such as:
@@ -153,48 +154,52 @@ After loading the data, we can start EDA by performing some basic operations suc
 1. **Checking the shape of the data**: This will give us an idea of how many rows (observations) and columns (features) our dataset has.
 
 ```python
-print(df.shape)
+print(df.shape)  
+# Returns (25656, 15), indicating there are 25,656 crime records each with 15 pieces of information.  
+# Data types of each column
 ```
 
 2. **Checking the data types**: It's important to know the data types of each column to understand what kind of data we are dealing with.
 
 ```python
-print(df.dtypes)
+print(df.dtypes)  
+# Displays the data types of each column. In this case, all columns are of type 'object' which generally means they contain text or mixed numeric and non-numeric values. Descriptive statistics
 ```
 
 3. **Descriptive statistics**: Summary statistics help to understand the central tendency, dispersion, and shape of the distribution.
 
 ```python
-print(df.describe())
+print(df.describe())  
+# Provides a statistical summary for each column. In this case, it displays four properties for each column:  
+# count: The number of non-missing values. For example, the Valeurs column has 25618 non-missing values.  
+# unique: The number of distinct values in a column. For instance, Valeurs has 16873 unique values.  
+# top: The most frequent value in a column. The most frequent value in Valeurs is 3.  
+# freq: The frequency of the most common value. For example, 3 appears 56 times in Valeurs.
 ```
 
 4. **Checking for missing values**: Missing values can significantly impact the analysis and modelling, so it's important to identify them early.
 
 ```python
-print(df.isnull().sum())
+print(df.isnull().sum())  
+# Returns the number of missing values for each column in the DataFrame. For instance, there are 38 missing values in  
+# the Valeurs column, 1 missing value in the Unite temps column, 2254 missing values in the Sous_indicateur column, and  
+# so on. The Correction column has the highest number of missing values at 19304.
 ```
 
 5. **Checking unique values in categorical columns**: This will give an idea of the distribution of categories in the dataset.
 
 ```python
-# Replace 'column_name' with the actual column names
-print(df['column_name'].value_counts())
+# Checking unique values in 'Zone_geographique' column:  
+print(df['Zone_geographique'].value_counts())  
+  
+# Checking unique values in 'Periodicite' column:  
+print(df['Periodicite'].value_counts())  
+  
+# Checking unique values in 'Unite_de_compte' column:  
+print(df['Unite_de_compte'].value_counts())  
+  
+# Checking unique values in 'Indicateur' column:  
+print(df['Indicateur'].value_counts())
 ```
 
-6. **Visualizing the data**: Visualization can help to identify patterns, relationships, or anomalies that might exist in the dataset.
-
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Histogram for a column
-df['column_name'].hist(bins=30)
-plt.show()
-
-# Correlation matrix heatmap for numerical columns
-plt.figure(figsize=(10, 10))
-sns.heatmap(df.corr(), annot=True, cmap='coolwarm', center=0)
-plt.show()
-```
-
-Remember to replace `'column_name'` with your actual column names. This is a basic start for EDA. Depending on the results, we might need to perform more specific analyses.
+6. **Visualizing the data**: Visualization can help to identify patterns, relationships, or anomalies that might exist in the dataset. (find it on our streamlit app)
