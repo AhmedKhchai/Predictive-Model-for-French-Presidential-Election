@@ -13,7 +13,7 @@
     
 6. **Deep-Dive Analyses:** Depending on the results from the initial exploratory analyses, we might want to dig deeper into specific areas.
 
-## Elections datasets
+## 2017 Elections dataset
 
 ### Load the Dataset
 
@@ -133,3 +133,68 @@ The quartiles provide further details:
 
 ### Visualization 
 *Visit*: https://mspr-data.streamlit.app/
+
+## Historic Security Dataset
+
+First, we need to load the dataset. To do so, let's use the `pandas` library, which is a powerful data handling library in Python.
+
+```python
+import pandas as pd
+
+# Load the data
+df = pd.read_csv('security-historic-dataset.csv', sep='\t')  # Assuming the data is tab-separated. Change the separator if it's different.
+
+# Let's take a look at the first few rows of the dataset
+print(df.head())
+```
+
+After loading the data, we can start EDA by performing some basic operations such as:
+
+1. **Checking the shape of the data**: This will give us an idea of how many rows (observations) and columns (features) our dataset has.
+
+```python
+print(df.shape)
+```
+
+2. **Checking the data types**: It's important to know the data types of each column to understand what kind of data we are dealing with.
+
+```python
+print(df.dtypes)
+```
+
+3. **Descriptive statistics**: Summary statistics help to understand the central tendency, dispersion, and shape of the distribution.
+
+```python
+print(df.describe())
+```
+
+4. **Checking for missing values**: Missing values can significantly impact the analysis and modelling, so it's important to identify them early.
+
+```python
+print(df.isnull().sum())
+```
+
+5. **Checking unique values in categorical columns**: This will give an idea of the distribution of categories in the dataset.
+
+```python
+# Replace 'column_name' with the actual column names
+print(df['column_name'].value_counts())
+```
+
+6. **Visualizing the data**: Visualization can help to identify patterns, relationships, or anomalies that might exist in the dataset.
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Histogram for a column
+df['column_name'].hist(bins=30)
+plt.show()
+
+# Correlation matrix heatmap for numerical columns
+plt.figure(figsize=(10, 10))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', center=0)
+plt.show()
+```
+
+Remember to replace `'column_name'` with your actual column names. This is a basic start for EDA. Depending on the results, we might need to perform more specific analyses.

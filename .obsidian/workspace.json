@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "docs/EDA.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "docs/EDA.md"
               }
             }
           }
@@ -155,14 +155,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c1210fd555bbe781",
+  "active": "3fffd6fedc6bd549",
   "lastOpenFiles": [
+    "README.md",
     "docs/EDA.md",
     "Excalidraw/Drawing 2023-07-15 20.11.44.excalidraw.md",
     "Excalidraw",
     "docs/Strategy.md",
     "docs/Main Notes.md",
-    "README.md",
     "docs/Datasets.md",
     "docs/Prompts.md",
     "docs/Tasks.md",

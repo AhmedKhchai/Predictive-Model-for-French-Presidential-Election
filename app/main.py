@@ -5,6 +5,7 @@ st.set_page_config(
     page_title="Prediction Model - Presidential Election",
 )
 
+
 # Define functions for each page/section
 def page_overview():
     st.markdown(
@@ -17,13 +18,14 @@ def page_overview():
         """
     )
 
+
 # Dictionary of pages and their corresponding functions
 pages = {
     "Overview": page_overview,
-    "Election Data 2017 EDA": election_2017_eda.main,  # Calls the function from the 'election_2017_eda' script
-    # "Election Data 2022": election_2022_eda.main,  # Calls the function from the 'election_2022_eda' script
-    # "Employment Data": employment_eda.main,  # Calls the function from the 'employment_eda' script
-    # "Security Data": security_eda.main,  # Calls the function from the 'security_eda' script
+    "EDA - 2017 Elections Dataset": election_2017_eda.main,
+    "EDA - 2022 Elections Dataset": election_2022_eda.main,
+    # "Employment Data": employment_eda.main,
+    # "Security Data": security_eda.main,
 }
 
 # Use a selectbox for navigation
