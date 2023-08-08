@@ -18,8 +18,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "42d5dcb4f1cc0f68",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.3.7"
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -155,8 +166,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3fffd6fedc6bd549",
+  "active": "c1210fd555bbe781",
   "lastOpenFiles": [
+    "Untitled",
     "datasets/lu155963huw1s.tmp",
     "README.md",
     "docs/EDA.md",
@@ -177,7 +189,6 @@
     "2023-07-13.md",
     "streamlit_app.py",
     "src/eda.py",
-    "eda.py",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",

@@ -1,98 +1,85 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+from app.clean.security_clean import clean_data
 import plotly.express as px
-import seaborn as sns
 
-# Load the data
-df = pd.read_csv('datasets/security-historic-dataset.csv', encoding='latin1')
-
-# Checking unique values in 'Zone_geographique' column:
-print(df['Zone_geographique'].value_counts())
-# France métropolitaine    4034
-# France                   1704
-# 69-Rhône                  206
-# 71-Saône-et-Loire         203
-# 70-Haute-Saône            203
-#                          ...
-# 12-Aveyron                196
-# 11-Aude                   196
-# 10-Aube                   196
-# 09-Ariège                 196
-# 11-Île-de-France           98
-
-# Checking unique values in 'Periodicite' column:
-print(df['Periodicite'].value_counts())
-# Annuelle         21276
-# Mensuelle         3568
-# Trimestrielle      812
-
-# Checking unique values in 'Unite_de_compte' column:
-print(df['Unite_de_compte'].value_counts())
-# Victimes                       9022
-# Infractions                    7471
-# Véhicules                      5367
-# Mis en cause                   3257
-# Ménages victimes                185
-# Atteintes                       174
-# victimes                         60
-# Personnes de 14 ans ou plus      45
-# Procédure                        30
-# Victime                          30
-# Checking unique values in 'Indicateur' column:
-print(df['Indicateur'].value_counts())
-# Vols et tentatives de vols liés aux véhicules                       5549
-# Violences physiques                                                 4748
-# Vols et tentatives de vols avec violence                            3643
-# Infractions à la législation sur les stupéfiants                    3078
-# Cambriolages et tentatives                                          1916
-# Violences sexuelles                                                 1896
-# Vols et tentatives de vols sans violence                            1847
-# Destructions et dégradations volontaires                            1798
-# Escroqueries et autres infractions assimilées                        349
-# Atteintes envers les animaux domestiques                             180
-# Homicides                                                            127
-# Traite et exploitation des êtres humains                              90
-# Actes de vandalisme                                                   60
-# Atteintes à l'environnement                                           54
-# Violences conjugales                                                  48
-# Outrages sexistes                                                     46
-# Sentiment d'insécurité                                                45
-# Outrages et violences contre dépositaires de l'autorité publique      44
-# Atteintes à la probité                                                36
-# Vols sans effraction de résidences principales                        30
-# Atteintes anti LGBT+                                                  21
-# Atteintes à caractère raciste, xénophobe ou antireligieux             21
-# Injures                                                               15
-# Menaces                                                               15
-
-# TODO (DATA CLEANING):
-# - Convert the 'Unite temps' column to a more readable format.
-# - Create a new column called 'Year' that contains the year of the 'Unite temps' column.
-# - Create a new column called 'Month' that contains the month of the 'Unite temps' column.
-# - Correct the 'Zone_geographique' column values to remove the numbers and the '-' at the beginning of the string.
-# - Correct the 'Unite_de_compte' column values by making them all lowercase and making all values containing 'victime' to 'victime'.
-# TODO (EDA VISUALISATIONS):
-# - Using streamlit, create a visualisation that shows the number of crimes committed in each geographical area.
-# - Using streamlit, create a visualisation that shows the Indicateur column as a pie chart per the selected geographical area.
-# - Using streamlit, create a visualisation that shows the number of crimes committed per year and per month for the selected geographical area.
-
-
-# Create a more readable format for 'Unite temps' column
-# df['Unite temps'] = pd.to_datetime(df['Unite temps'])
+# Load the uncleaned data
+unclean_df = pd.read_csv('datasets/security-historic-dataset.csv', encoding='latin1')
 
 
 def main():
-    st.title("Historic Security Data Analysis")
+    st.title("Historic Security Data Analysis, Cleaning and Visualisation")
 
-    # User selection for geographical area
-    geo_area = st.selectbox(
-        "Select a Geographical Area", options=df['Zone_geographique'].unique()
-    )
+    st.header("Data Before Cleaning")
 
-    # Subset of data for the selected geographical area
-    df_geo = df[df['Zone_geographique'] == geo_area]
+    # Show the outputs of the data analysis on the original dataset
+    st.table(unclean_df.head())
+    st.markdown('**Unique values in Statistique column:**')
+    st.table(unclean_df['Statistique'].value_counts().to_frame())
 
+    st.markdown('**Unique values in Zone_geographique column:**')
+    st.table(unclean_df['Zone_geographique'].value_counts().to_frame())
+
+    st.markdown('**Unique values in Periodicite column:**')
+    st.table(unclean_df['Periodicite'].value_counts().to_frame())
+
+    st.markdown('**Unique values in Unite_de_compte column:**')
+    st.table(unclean_df['Unite_de_compte'].value_counts().to_frame())
+
+    st.markdown('**Unique values in Indicateur column:**')
+    st.table(unclean_df['Indicateur'].value_counts().to_frame())
+
+    # Explanation for cleaning the data
+    st.subheader("Why is data cleaning needed?")
+    st.markdown("""
+    We need to clean the data because...
+
+    1. **Inconsistent Formats:** Your 'Unite_de_compte' and 'Zone_geographique' columns appear to have inconsistent formatting. For instance, in the 'Unite_de_compte' column, some rows have the word 'Victime' with a capital 'V', some have 'victimes', some have 'Victimes', etc. These should be standardized to ensure that when you perform operations or queries on the data, it behaves as expected.
+
+    2. **Unnecessary Information:** In the 'Zone_geographique' column, there are numerical prefixes attached to the zone names. This information is not needed for geographical analysis and hence it's better to remove this.
+
+    3. **Improving Readability and Processing:** In the 'Unite temps' column, the information is not in a readable or easily processable format. Breaking it down into separate 'Year' and 'Month' columns can make it easier to understand and allows for more straightforward temporal analysis.
+
+    4. **Handling Missing or NA values:** The script contains code to handle NaN values, which are common in real-world data. It's important to decide how to handle these: whether to exclude them, fill them with a default value, or some other method.
+
+    5. **Standardization:** Certain rows contain French terms (like 'Annuelle', 'Mensuelle', 'Trimestrielle') which might need to be translated or standardized to English, especially if this data needs to be integrated with other data sources or presented to an international audience.
+    """)
+
+    # Button to run cleaning script and load cleaned data
+    if st.button("Clean Data"):
+        st.text("Cleaning data...")
+        cleaned_df = clean_data()
+        st.header("Data After Cleaning")
+        st.write(cleaned_df.head())
+
+    df = pd.read_csv('datasets/security-historic-dataset-cleaned.csv', encoding='latin1')
+
+    selected_indicator = st.selectbox('Select an indicator to filter the data', df['Indicateur'].unique())
+    # Filter the dataframe based on the selected indicator
+    df_filtered = df[df['Indicateur'] == selected_indicator]
+
+    # Line chart for yearly trend
+    st.subheader(f"Yearly Trend of 'Valeurs' for {selected_indicator}")
+    yearly_values = df_filtered.groupby('Year').sum()['Valeurs'].reset_index()
+    fig2 = px.line(yearly_values, x='Year', y='Valeurs', title=f"Yearly Trend of Valeurs for {selected_indicator}")
+    st.plotly_chart(fig2)
+
+    # Bar chart for top zones with highest values
+    st.subheader(f"Top Zones with Highest 'Valeurs' for {selected_indicator}")
+    top_zones = df_filtered.groupby('Zone_geographique').sum()['Valeurs'].nlargest(10).reset_index()
+    fig3 = px.bar(top_zones, x='Zone_geographique', y='Valeurs',
+                  title=f"Top Zones with Highest Valeurs for {selected_indicator}")
+    st.plotly_chart(fig3)
+
+    selected_year = st.selectbox('Select a year to filter the data', df['Year'].unique())
+
+    # Pie chart for values distribution by `Indicateur` for a selected year
+    st.subheader(f"Values Distribution by 'Indicateur' for {selected_year}")
+    df_filtered_by_year = df[df['Year'] == selected_year]
+    indicator_distribution = df_filtered_by_year.groupby('Indicateur').sum()['Valeurs'].reset_index()
+    fig4 = px.pie(indicator_distribution, names='Indicateur', values='Valeurs',
+                  title=f"Distribution by Indicateur for {selected_year}")
+    st.plotly_chart(fig4)
 
 
 if __name__ == "__main__":
