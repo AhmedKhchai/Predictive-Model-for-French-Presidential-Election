@@ -25,6 +25,7 @@ pages = {
     "EDA - 2017 Elections Dataset": election_2017_eda.main,
     "EDA - 2022 Elections Dataset": election_2022_eda.main,
     "EDA - Historic Security Dataset": security_eda.main,
+    "EDA - Historic Employment Dataset": employment_eda.main,
     # "Employment Data": employment_eda.main,
 }
 

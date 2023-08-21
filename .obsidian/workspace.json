@@ -23,9 +23,11 @@
             "id": "42d5dcb4f1cc0f68",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.3.7"
+                "file": "docs/Strategy.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -104,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/EDA.md",
+                "file": "docs/Strategy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -121,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/EDA.md",
+                "file": "docs/Strategy.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -144,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/EDA.md"
+                "file": "docs/Strategy.md"
               }
             }
           }
@@ -153,7 +155,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 224.5
+    "width": 224.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -166,18 +169,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c1210fd555bbe781",
+  "active": "42d5dcb4f1cc0f68",
   "lastOpenFiles": [
+    "docs/Prompts.md",
+    "docs/Main Notes.md",
+    "docs/EDA.md",
     "Untitled",
     "datasets/lu155963huw1s.tmp",
     "README.md",
-    "docs/EDA.md",
     "Excalidraw/Drawing 2023-07-15 20.11.44.excalidraw.md",
     "Excalidraw",
     "docs/Strategy.md",
-    "docs/Main Notes.md",
     "docs/Datasets.md",
-    "docs/Prompts.md",
     "docs/Tasks.md",
     "streamlit/eda/security-eda.py",
     "streamlit/eda/employment-eda.py",
@@ -188,7 +191,6 @@
     "Untitled.canvas",
     "2023-07-13.md",
     "streamlit_app.py",
-    "src/eda.py",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
