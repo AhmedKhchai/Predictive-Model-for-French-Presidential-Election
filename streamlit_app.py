@@ -1,7 +1,7 @@
 import streamlit as st
-from eda import security_eda, employment_eda, election_2022_eda, election_2017_eda
-from merge import employment_merge
-from model import prediction_model
+from app.eda import security_eda, employment_eda, election_2022_eda, election_2017_eda
+from app.merge import employment_merge
+from app.model import prediction_model
 
 st.set_page_config(
     page_title="Prediction Model - Presidential Election",
