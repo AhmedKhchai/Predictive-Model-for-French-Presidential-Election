@@ -1,12 +1,11 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import pandas as pd
 import plotly.express as px
 import seaborn as sns
 
 # Load data
-df = pd.read_csv("datasets/election_2017.csv")
+df = pd.read_csv("datasets/election-dataset-2017.csv")
 
 # Aggregate data by department
 df_departments = df.groupby("Département").sum()
@@ -15,6 +14,14 @@ df_departments["Abstention_rate"] = (
 )
 df_departments.reset_index(inplace=True)
 
+# Calculate the percentage of votes each candidate received in each department
+candidates = [
+    "ARTHAUD", "ROUSSEL", "MACRON", "LASSALLE", "LE PEN", "ZEMMOUR",
+    "MÉLENCHON", "HIDALGO", "JADOT", "PÉCRESSE", "POUTOU", "DUPONT-AIGNAN"
+]
+
+for candidate in candidates:
+    df_departments[f'{candidate}_percent'] = (df_departments[candidate] / df_departments["Inscrits"]) * 100
 
 # Set up main function
 def main():
@@ -39,46 +46,32 @@ def main():
     # Percentage of votes for each candidate across departments
     st.header(f"Votes Distribution in {department}")
 
-    candidates = [
-        "ARTHAUD",
-        "ROUSSEL",
-        "MACRON",
-        "LASSALLE",
-        "LE PEN",
-        "ZEMMOUR",
-        "MÉLENCHON",
-        "HIDALGO",
-        "JADOT",
-        "PÉCRESSE",
-        "POUTOU",
-        "DUPONT-AIGNAN",
-    ]
-
-    df_department = df[df["Département"] == department]
-    votes = [
-        df_department[candidate].sum() / df_department["Inscrits"].sum() * 100
-        for candidate in candidates
-    ]
+    df_department = df_departments[df_departments["Département"] == department]
+    votes = [df_department[f"{candidate}_percent"].values[0] for candidate in candidates]
     fig, ax = plt.subplots()
     sns.barplot(x=candidates, y=votes, ax=ax)
     plt.xticks(rotation=90)
     ax.set_ylabel("Percentage of Votes (%)")
     st.pyplot(fig)
     plt.clf()
-
-    # "Blancs" and "Nuls" votes across departments
-    st.header(f"'Blancs' and 'Nuls' Votes in {department}")
-    blancs_nuls = ["Blancs", "Nuls"]
-    bn_votes = [
-        df_department[bn].sum() / df_department["Inscrits"].sum() * 100
-        for bn in blancs_nuls
+    # List of columns to remove
+    columns_to_remove = [
+        "CodeCirco", "NumeroCirco", "Circonscription", "Inscrits", "Abstentions", "Abstentions_ins", "Votants_ins",
+        "Blancs_ins", "Blancs_vot", "Nuls", "Nuls_ins", "Nuls_vot", "Exprimés_ins", "Exprimés_vot", "ARTHAUD.ins",
+        "ROUSSEL.ins", "MACRON.ins", "LASSALLE.ins", "LE PEN.ins", "ZEMMOUR.ins", "MÉLENCHON.ins", "HIDALGO.ins",
+        "JADOT.ins", "PÉCRESSE.ins", "POUTOU.ins", "DUPONT-AIGNAN.ins", "ARTHAUD.exp", "ROUSSEL.exp", "MACRON.exp",
+        "LASSALLE.exp", "LE PEN.exp", "ZEMMOUR.exp", "MÉLENCHON.exp", "HIDALGO.exp", "JADOT.exp", "PÉCRESSE.exp",
+        "POUTOU.exp", "DUPONT-AIGNAN.exp"
     ]
-    fig, ax = plt.subplots()
-    sns.barplot(x=blancs_nuls, y=bn_votes, ax=ax)
-    ax.set_ylabel("Percentage of Votes (%)")
-    st.pyplot(fig)
-    plt.clf()
 
+    # Remove specified columns
+    clean_df = df_departments.drop(columns=columns_to_remove, errors='ignore')
+
+    # Button to save aggregated data
+    if st.button('Save Aggregated Data (2017)'):
+        save_path = 'datasets/election-dataset-2017-cleaned.csv'
+        clean_df.to_csv(save_path, index=False)
+        st.success(f"Data saved to {save_path}")
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 import streamlit as st
 from eda import security_eda, employment_eda, election_2022_eda, election_2017_eda
-
+from merge import employment_merge
 st.set_page_config(
     page_title="Prediction Model - Presidential Election",
 )
@@ -26,7 +26,7 @@ pages = {
     "EDA - 2022 Elections Dataset": election_2022_eda.main,
     "EDA - Historic Security Dataset": security_eda.main,
     "EDA - Historic Employment Dataset": employment_eda.main,
-    # "Employment Data": employment_eda.main,
+    "Data Merging - Employment Dataset": employment_merge.main,
 }
 
 # Use a selectbox for navigation

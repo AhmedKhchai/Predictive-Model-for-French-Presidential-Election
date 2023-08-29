@@ -5,18 +5,15 @@ import plotly.express as px
 import seaborn as sns
 
 # Load data
-df = pd.read_csv("datasets/election_2022.csv")
+df = pd.read_csv("datasets/election-dataset-2022-cleaned.csv")
 
-# Aggregate data by department
-# Select columns that start with '%'
-percentage_columns = df.columns[df.columns.str.startswith('%')]
+# Calculate the abstention rate in each department
+df["Abstention_rate"] = 100 - (df["Votants"] / df["Votants"].sum() * 100)
 
-# Groupby 'Libellé du département' and calculate mean of these columns
-df_departments = df.groupby("Libellé du département")[percentage_columns].mean().reset_index()
+# Get the list of candidates
+candidates = [col.replace("_percent", "") for col in df.columns if "_percent" in col]
 
-df_departments.reset_index(level=0, inplace=True)
-
-
+# Set up main function
 def main():
     st.title("2022 French Presidential Election Data Analysis")
 
@@ -26,45 +23,32 @@ def main():
         """
         This TreeMap displays the abstention rates across all departments in the 2022 French Presidential Election.
         Each rectangle represents a department, and the size of the rectangle indicates the abstention rate.
-    """
+        """
     )
-    fig = px.treemap(df_departments, path=["Libellé du département"], values="% Abs/Ins")
+    fig = px.treemap(df, path=["Département"], values="Abstention_rate")
     st.plotly_chart(fig)
 
     # Ask user to select a department
     department = st.selectbox(
-        "Select a Department", options=df_departments["Libellé du département"].unique()
+        "Select a Department", options=df["Département"].unique()
     )
 
     # Percentage of votes for each candidate across departments
     st.header(f"Votes Distribution in {department}")
 
-    df_department = df[df["Libellé du département"] == department]
-
-    # Get the vote columns
-    # Get the vote, name, and % Voix/Ins columns
-    vote_columns = [col for col in df.columns if 'Voix' in col]
-    name_columns = [col for col in df.columns if 'Nom' in col]
-    vote_percentage_columns = [col for col in df.columns if '% Voix/Ins' in col]
-
-    votes = []
-    candidates = []
-    vote_percentages = []
-
-    for vote_col, name_col, vote_percentage_col in zip(vote_columns, name_columns, vote_percentage_columns):
-        votes.append(df_department[vote_col].sum())
-        candidates.append(df_department[name_col].unique()[0])
-        vote_percentages.append(df_department[vote_percentage_col].sum())
-
-    vote_data = pd.DataFrame({'Candidate': candidates, 'Votes': votes, 'Vote Percentage': vote_percentages})
-    vote_data.sort_values('Vote Percentage', ascending=False, inplace=True)
-
+    df_department = df[df["Département"] == department]
+    votes = [df_department[f"{candidate}_percent"].values[0] for candidate in candidates]
     fig, ax = plt.subplots()
-    sns.barplot(x='Vote Percentage', y='Candidate', data=vote_data, ax=ax)
-    plt.xlabel("Vote Percentage")
+    sns.barplot(x=candidates, y=votes, ax=ax)
+    plt.xticks(rotation=90)
+    ax.set_ylabel("Percentage of Votes (%)")
     st.pyplot(fig)
-    plt.clf()
 
+    # Button to save aggregated data
+    if st.button('Save Aggregated Data (2022)'):
+        save_path = 'datasets/election-dataset-2022-cleaned.csv'
+        df.to_csv(save_path, index=False)
+        st.success(f"Data saved to {save_path}")
 
 if __name__ == "__main__":
     main()

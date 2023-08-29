@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/Strategy.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/Strategy.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/Strategy.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "docs/Strategy.md"
+                "file": "README.md"
               }
             }
           }
@@ -171,26 +171,27 @@
   },
   "active": "42d5dcb4f1cc0f68",
   "lastOpenFiles": [
+    "datasets/merged-employment-dataset.csv",
+    "app/merge/__pycache__/employment_merge.cpython-310.pyc",
+    "app/merge/employment_merge.py",
+    "datasets/merged-dataset-2017.csv",
+    "app/merge/__pycache__/data_merging.cpython-310.pyc",
+    "app/merge/__pycache__",
+    "app/merge/data_merging.py",
+    "app/merge",
     "docs/Prompts.md",
     "docs/Main Notes.md",
+    "docs/Strategy.md",
     "docs/EDA.md",
     "Untitled",
     "datasets/lu155963huw1s.tmp",
     "README.md",
     "Excalidraw/Drawing 2023-07-15 20.11.44.excalidraw.md",
     "Excalidraw",
-    "docs/Strategy.md",
     "docs/Datasets.md",
     "docs/Tasks.md",
-    "streamlit/eda/security-eda.py",
-    "streamlit/eda/employment-eda.py",
-    "streamlit/eda/election-eda.py",
-    "streamlit/eda",
-    "streamlit/app.py",
-    "streamlit",
     "Untitled.canvas",
     "2023-07-13.md",
-    "streamlit_app.py",
     "datasets/Downloads/diet.png",
     "datasets/Downloads/cropped-13.png",
     "datasets/Downloads/coffee-machine.png",
