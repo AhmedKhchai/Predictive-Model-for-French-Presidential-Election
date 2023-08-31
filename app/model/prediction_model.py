@@ -3,27 +3,66 @@ import streamlit as st
 import pandas as pd
 import joblib
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score, classification_report
 
 
 def train_and_evaluate_model(X_train, X_val, y_train, y_val):
     # Initialize the Random Forest Classifier
     rf_classifier = RandomForestClassifier(random_state=42)
-    rf_classifier.fit(X_train, y_train)
+
+    # Define the parameter grid
+    param_grid = {
+        'n_estimators': [50, 100, 150],
+        'max_features': ['sqrt'],
+        'max_depth': [None, 10, 20, 30, 40, 50],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'bootstrap': [True, False]
+    }
+
+    # Create a GridSearchCV object
+    grid_search = GridSearchCV(estimator=rf_classifier, param_grid=param_grid,
+                               cv=3, n_jobs=-1, verbose=2, scoring='accuracy')
+
+    # Fit the Grid Search to the data
+    grid_search.fit(X_train, y_train)
+
+    # Get the best parameters and create a new classifier with them
+    best_params = grid_search.best_params_
+    best_rf_classifier = RandomForestClassifier(**best_params, random_state=42)
+    best_rf_classifier.fit(X_train, y_train)
 
     # Evaluate the model
-    y_val_pred = rf_classifier.predict(X_val)
+    y_val_pred = best_rf_classifier.predict(X_val)
     accuracy = accuracy_score(y_val, y_val_pred)
     classification_rep = classification_report(y_val, y_val_pred)
 
     # Return trained model and evaluation metrics
-    return rf_classifier, accuracy, classification_rep
+    return best_rf_classifier, accuracy, classification_rep
 
 
 def main():
     st.title("Prediction Model - Presidential Election")
 
+    st.markdown("""
+        ## Why Random Forest Model?
+        We chose the Random Forest model for several reasons:
+        1. **Ensemble Method**: Random Forest is an ensemble of Decision Trees, generally trained via the bagging method.
+        2. **Handle Missing Values**: It can handle missing values and still gives a good accuracy.
+        3. **High Accuracy**: Random Forest algorithms maintain high accuracy even for large datasets.
+
+        ## Data Merging and Preprocessing
+        1. **Standardization**: The department names across all datasets have been standardized to uppercase.
+        2. **Filtering**: Employment and security data have been filtered for the year 2017.
+        3. **Aggregation**: Security data has been aggregated by department.
+        4. **Merging**: Finally, the datasets have been merged based on the department names.
+        5. **Missing Value Treatment**: Missing values have been replaced with the mean value of each feature.
+
+        ## Model Output Explanation
+        1. **Accuracy**: The percentage of correct predictions out of all predictions.
+        2. **Classification Report**: Provides key metrics in classification problem, such as precision, recall, f1-score, etc.
+        """)
     # Data Preprocessing
     final_data = load_preprocess_data()
 
@@ -32,7 +71,7 @@ def main():
     y = final_data['Winner_2017']
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Fetch saved
+    # Fetch saved models
     if not os.path.exists('saved_models'):
         os.makedirs('saved_models')
     model_files = os.listdir('saved_models/')
@@ -46,7 +85,7 @@ def main():
         st.write(f"Criterion: {loaded_model.criterion}")
         st.write(f"Max Depth: {loaded_model.max_depth}")
 
-    # Button to train and save the model
+    # Train and Save the model
     if st.button('Train Model and Save'):
         rf_classifier, accuracy, classification_rep = train_and_evaluate_model(X_train, X_val, y_train, y_val)
 
@@ -57,8 +96,9 @@ def main():
         st.write(f"Model Accuracy: {accuracy}")
         st.write("Classification Report:")
         st.text(classification_rep)
+        st.success(f"Model saved to saved_models/random_forest_model_{accuracy}.joblib")
 
-
+# Load and preprocess data
 def load_preprocess_data():
     # Load datasets
     election_data_2017 = pd.read_csv('datasets/election-dataset-2017-cleaned.csv')
