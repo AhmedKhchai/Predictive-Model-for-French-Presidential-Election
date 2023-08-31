@@ -9,17 +9,21 @@ conversion_columns_map = {
     '2015': ['Projets de recrutement totaux', 'Projets de recrutement difficiles',
              'Projets de recrutement saisonniers'],
     '2016': ['met', 'xmet', 'smet'],
-    '2017': ['met', 'xmet', 'smet']
+    '2017': ['met', 'xmet', 'smet'],
+    '2020': ['met', 'xmet', 'smet'],
+    '2021': ['met', 'xmet', 'smet'],
+    '2022': ['met', 'xmet', 'smet']
 }
 
 # Mapping for department code and name columns across datasets
 dept_columns_map = {
     '2015': ['Code département', 'Nom Departement'],
     '2016': ['Département', 'NomDept'],
-    '2017': ['Dept', 'NomDept']
+    '2017': ['Dept', 'NomDept'],
+    '2020': ['Dept', 'NomDept'],
+    '2021': ['Dept', 'NomDept'],
+    '2022': ['Dept', 'NomDept']
 }
-
-import numpy as np
 
 
 def load_data(path, year):
@@ -30,13 +34,26 @@ def load_data(path, year):
 
     for col in conversion_columns:
         if data[col].dtype == 'object':  # Check if the column is of object (string) type
-            data[col] = data[col].str.strip().replace(['-', ' - '], np.nan).str.replace(',', '').astype(float)
+            # First replace known non-convertible values with NaN
+            data[col] = data[col].str.strip().replace(['-', ' - '], np.nan).str.replace(',', '')
+
+            # Convert to float
+            data[col] = pd.to_numeric(data[col], errors='coerce')
+
+            # Now calculate the median for the column
+            median_value = data[col].median()
+
+            # Replace NaNs (which includes previously '*' values) with the median
+            data[col].fillna(median_value, inplace=True)
         else:
             data[col] = data[col].replace(['-', ' - '], np.nan).astype(float)
+            median_value = data[col].median()
+            data[col].fillna(median_value, inplace=True)
 
     # Apply the capping method to handle outliers
     for col in conversion_columns:
         data = cap_outliers(data, col)
+
     return data
 
 
@@ -58,8 +75,8 @@ def main():
     st.title("Employment Data Analysis, Cleaning, and Aggregation")
 
     # Choose the dataset year for visualization
-    year = st.selectbox('Select the dataset year:', ['2015', '2016', '2017'])
-    data_path = f'datasets/employment-dataset-{year}.csv'
+    year = st.selectbox('Select the dataset year:', ['2015', '2016', '2017', '2020', '2021', '2022'])
+    data_path = f'datasets/Employment dataset/employment-dataset-{year}.csv'
 
     # Load the data
     data = load_data(data_path, year)
@@ -88,7 +105,7 @@ def main():
 
     # Option to save the cleaned and aggregated dataset
     if st.button(f'Save Aggregated Data ({year})'):
-        save_path = f'datasets/employment-dataset-{year}-cleaned.csv'
+        save_path = f'datasets/Employment dataset/employment-dataset-{year}-cleaned.csv'
         aggregated_data.to_csv(save_path, index=False)
         st.success(f"Data saved to {save_path}")
 
