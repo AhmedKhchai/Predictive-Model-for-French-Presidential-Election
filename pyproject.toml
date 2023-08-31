@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "Predictive Model for French Presidential Election"
 authors = ["AhmedKhchai <a.khchai@gmail.com>"]
 readme = "README.md"
-packages = [{include = "mpsr_data"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
