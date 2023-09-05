@@ -2,27 +2,24 @@ import os
 import streamlit as st
 import pandas as pd
 import joblib
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.neural_network import MLPClassifier
 
 
 def train_and_evaluate_model(X_train, X_val, y_train, y_val):
     # Initialize the Random Forest Classifier
-    rf_classifier = RandomForestClassifier(random_state=42)
+    mlp_classifier = MLPClassifier(random_state=1, max_iter=100)
 
     # Define the parameter grid
     param_grid = {
-        'n_estimators': [50, 100, 150],
-        'max_features': ['sqrt'],
-        'max_depth': [None, 10, 20, 30, 40, 50],
-        'min_samples_split': [2, 5, 10],
-        'min_samples_leaf': [1, 2, 4],
-        'bootstrap': [True, False]
+        'hidden_layer_sizes': [(16, 8, 4), (32, 16, 8), (64, 32, 16)],
+        'alpha': [1e-4, 1e-3, 1e-2],
+        'learning_rate_init': [0.001, 0.01, 0.1]
     }
 
     # Create a GridSearchCV object
-    grid_search = GridSearchCV(estimator=rf_classifier, param_grid=param_grid,
+    grid_search = GridSearchCV(estimator=mlp_classifier, param_grid=param_grid,
                                cv=3, n_jobs=-1, verbose=2, scoring='accuracy')
 
     # Fit the Grid Search to the data
@@ -30,16 +27,17 @@ def train_and_evaluate_model(X_train, X_val, y_train, y_val):
 
     # Get the best parameters and create a new classifier with them
     best_params = grid_search.best_params_
-    best_rf_classifier = RandomForestClassifier(**best_params, random_state=42)
-    best_rf_classifier.fit(X_train, y_train)
+    best_mlp_classifier = MLPClassifier(random_state=42, max_iter=100, **best_params)
+    best_mlp_classifier.fit(X_train, y_train)
 
     # Evaluate the model
-    y_val_pred = best_rf_classifier.predict(X_val)
+    y_val_pred = best_mlp_classifier.predict(X_val)
     accuracy = accuracy_score(y_val, y_val_pred)
     classification_rep = classification_report(y_val, y_val_pred)
+    confusion_mat = confusion_matrix(y_val, y_val_pred)
 
     # Return trained model and evaluation metrics
-    return best_rf_classifier, accuracy, classification_rep
+    return best_mlp_classifier, accuracy, classification_rep, confusion_mat
 
 
 def main():
@@ -87,22 +85,23 @@ def main():
 
     # Train and Save the model
     if st.button('Train Model and Save'):
-        rf_classifier, accuracy, classification_rep = train_and_evaluate_model(X_train, X_val, y_train, y_val)
+        mlp_classifier, accuracy, classification_rep, confusion_mat = train_and_evaluate_model(X_train, X_val, y_train, y_val)
 
         # Save the model to a file
-        joblib.dump(rf_classifier, f'saved_models/random_forest_model_{accuracy}.joblib')
+        joblib.dump(mlp_classifier, f'saved_models/random_forest_model_{accuracy}.joblib')
 
         # Display the model information
         st.write(f"Model Accuracy: {accuracy}")
         st.write("Classification Report:")
         st.text(classification_rep)
+        st.write(f"Confusion Matrix: {confusion_mat}")
         st.success(f"Model saved to saved_models/random_forest_model_{accuracy}.joblib")
 
 # Load and preprocess data
 def load_preprocess_data():
     # Load datasets
     election_data_2017 = pd.read_csv('datasets/election-dataset-2017-cleaned.csv')
-    employment_data = pd.read_csv('datasets/merged-employment-dataset.csv')
+    employment_data = pd.read_csv('datasets/Employment dataset/merged-employment-dataset.csv')
     security_data = pd.read_csv('datasets/security-historic-dataset-cleaned.csv', encoding='latin1')
 
     # Data Merging and Cleaning
