@@ -10,7 +10,7 @@ df = pd.read_csv("datasets/election-dataset-2017.csv")
 # Aggregate data by department
 df_departments = df.groupby("Département").sum()
 df_departments["Abstention_rate"] = (
-    df_departments["Abstentions"] / df_departments["Inscrits"] * 100
+        df_departments["Abstentions"] / df_departments["Inscrits"] * 100
 )
 df_departments.reset_index(inplace=True)
 
@@ -22,6 +22,7 @@ candidates = [
 
 for candidate in candidates:
     df_departments[f'{candidate}_percent'] = (df_departments[candidate] / df_departments["Inscrits"]) * 100
+
 
 # Set up main function
 def main():
@@ -70,8 +71,9 @@ def main():
     # Button to save aggregated data
     if st.button('Save Aggregated Data (2017)'):
         save_path = 'datasets/election-dataset-2017-cleaned.csv'
-        clean_df.to_csv(save_path, index=False)
+        clean_df.to_csv(save_path, index=False, encoding='latin1')
         st.success(f"Data saved to {save_path}")
+
 
 if __name__ == "__main__":
     main()

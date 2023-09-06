@@ -106,7 +106,7 @@ def main():
     # Option to save the cleaned and aggregated dataset
     if st.button(f'Save Aggregated Data ({year})'):
         save_path = f'datasets/Employment dataset/employment-dataset-{year}-cleaned.csv'
-        aggregated_data.to_csv(save_path, index=False)
+        aggregated_data.to_csv(save_path, index=False, encoding='latin1')
         st.success(f"Data saved to {save_path}")
 
 
