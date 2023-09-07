@@ -27,3 +27,7 @@ The datasets for the model will be sourced per each French department to capture
 ## Goals
 
 The goal of the project is to build a predictive model that can accurately predict the outcome of the French presidential election based on the relevant employment and security factors. The model's performance will be assessed based on its accuracy in predicting the 2022 election results. This can potentially provide valuable insights into the interplay between local employment and security situations and their influence on election outcomes.
+
+
+## TODO: 
+add a Correlation Matrix of Numerical Features with Target Variables (Regression Task) to the prediction 
