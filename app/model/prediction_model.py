@@ -61,6 +61,8 @@ def main():
     )
     st.plotly_chart(fig2)
 
+    #TODO: Add a justification to why the model's performance is not that good and how it can be improved
+
     if st.button("Predict"):
         # Load the model and label encoder
         model = joblib.load("best_xgb_model.pkl")
