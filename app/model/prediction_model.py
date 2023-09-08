@@ -61,7 +61,23 @@ def main():
     )
     st.plotly_chart(fig2)
 
-    #TODO: Add a justification to why the model's performance is not that good and how it can be improved
+
+    st.write("## Potential Areas for Model Improvement")
+
+    st.write("""
+    ### Data Quality and Feature Engineering
+    - The dataset might benefit from further feature engineering, including interaction terms, polynomial features, or more domain-specific knowledge. 
+    - Additional data from other years or other types of data like economic indicators could be included to improve the model's predictive power.
+
+    ### Hyperparameter Tuning
+    - Although Grid Search was performed for hyperparameter tuning, more advanced techniques like Randomized Search or Bayesian Optimization could be used for potentially better results.
+
+    ### Imbalanced Classes
+    - The model could be suffering from class imbalance, which might lead to suboptimal performance. Techniques like SMOTE, ADASYN, or class-weight adjustments could be explored.
+
+    ### Evaluation Metrics
+    - While accuracy is a straightforward metric, it may not be the best metric for this problem, especially if the classes are imbalanced. Metrics like F1-score, Precision, Recall, or AUC-ROC could provide more insights into the model's performance.
+    """)
 
     if st.button("Predict"):
         # Load the model and label encoder
